@@ -3,17 +3,7 @@
 (function() {
   'use strict';
 
-  var express = require('express');
-  var logger = require('morgan');
-  var app = express();
-
-  app.use(logger('dev'));
-
-  var dummy = require('./dummy');
-  app.use(dummy);
-
-  var layout = require('./app');
-  app.use(layout);
+  var app = require('./dummy');
 
   var port = parseInt(process.env.PORT);
 

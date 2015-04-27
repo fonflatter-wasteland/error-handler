@@ -1,27 +1,12 @@
-suite('layout', function() {
+suite('error-handler', function() {
   'use strict';
 
   var express = require('express');
 
   var expect = require('chai').expect;
-  var logger = require('morgan');
   var request = require('supertest');
 
-  var dummy = require('../dummy');
-  var layout = require('../app');
-
-  var app = express();
-  app.use(logger('dev'));
-  app.use(dummy);
-  app.use(layout);
-
-  test('dummy content', function(next) {
-    request(app)
-      .get('/dummy')
-      .expect(200)
-      .expect(/dummy page/)
-      .end(next);
-  });
+  var app = require('../dummy');
 
   test('error with status', function(next) {
     request(app)
@@ -47,9 +32,24 @@ suite('layout', function() {
       .end(next);
   });
 
-  test('reqistering app after layout', function() {
+  test('reqistering app after error handler', function() {
     expect(function() {
-      app.use(dummy);
+      app.use(express());
     }).to.throw(/must be app.use\(\)d last/);
+  });
+
+  test('break things', function(next) {
+    var errorHandler = require('..');
+
+    // Break things
+    errorHandler.set('view', function() {
+      return 'No spoon!';
+    });
+
+    request(errorHandler)
+      .get('/non-existent')
+      .expect(404)
+      .expect(/Could not render error page/)
+      .end(next);
   });
 });
