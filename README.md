@@ -12,3 +12,5 @@ Express app containing the error handler of http://fonflatter.de
 
 [![Coverage Status](https://coveralls.io/repos/fonflatter/error-handler/badge.svg?branch=1.0.0-dev)](https://coveralls.io/r/fonflatter/error-handler?branch=1.0.0-dev)
 [![Code Climate](https://codeclimate.com/github/fonflatter/error-handler/badges/gpa.svg)](https://codeclimate.com/github/fonflatter/error-handler)
+
+[![Stories in Progress](https://badge.waffle.io/fonflatter/error-handler.png?label=in%20progress&title=In%20Progress)](http://waffle.io/fonflatter/error-handler)
